@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    </meta>
+    <title>文件转换工具</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #eee;
+            float: left;
+            width: 200px;
+            height: 100%;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            display: block;
+            padding: 5px;
+            background-color: #ccc;
+            color: #333;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        section {
+            margin-left: 220px;
+            padding: 10px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>头导航</h1>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="#page/home">首页</a>
+            </li>
+            <li>
+                <a href="#page/pdftoword">PDF转word</a>
+            </li>
+            <li>
+                <a href="#page/pdftopptt">PDF转ppt</a>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <h1>欢迎来到我们的网站！</h1>
+        <p>请点击左侧菜单选择您需要查看的内容。</p>
+    </section>
+    <script type="text/javascript">
+        var navLinks = document.querySelectorAll('nav a');
+        var section = document.querySelector('section');
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function (e) {
+                e.preventDefault();
+                var page = this.getAttribute('href').substring(1);
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        section.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open('GET', page, true);
+                xhr.send();
+            });
+        }
+    </script>
+</body>
+
+</html>

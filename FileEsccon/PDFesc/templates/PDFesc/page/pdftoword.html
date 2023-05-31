@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    </meta>
+    <title>PDF转word</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
+</head>
+
+<body>
+    <form enctype="multipart/form-data" action="uploadfile/pdftoword" method="post">
+        {% csrf_token %}
+        <input type="file" multiple="multiple" name="newfile">
+        <br />
+        <input type="submit" value="上传文件">
+    </form>
+    <!-- <div id="divImg">
+        <input type="file" class="file" name="file" multiple="multiple" id="file" />
+        <button type="button" onclick="uploadFile()">上传</button>
+    </div> -->
+    <script>
+        function uploadFile() {
+            let files = $("#file").prop("files");
+            let formData = new FormData();
+            // 对每个文件进行循环处理
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                // 添加文件到formData
+                formData.append('files[' + i + ']', file, file.name);
+            }
+            $.ajax({
+                url: "uploadfile/pdftoword",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                async: false,
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }    
+    </script>
+</body>
+
+</html>
