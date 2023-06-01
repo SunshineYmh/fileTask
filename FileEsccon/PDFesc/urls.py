@@ -4,8 +4,10 @@ from django.urls import path
 from . import pdfToWord
 from . import pdfToPpt
 from . import pdfToImage
-from . import pdInfo
+from . import pdfInfo
 from . import pdfToSvg
+from . import pdfMerger
+from . import pdfStamp
 
 urlpatterns = [
     # path("", views.index, name="index"),
@@ -18,15 +20,25 @@ urlpatterns = [
     path("uploadfile/pdfToSvg/<int:page_index>",
          pdfToSvg.upload_file,
          name="upload_file"),
+    path("uploadfile/getPdfMetaInfo",
+         pdfMerger.getPdfMetaInfo,
+         name="getPdfMetaInfo"),
+    path("uploadfile/pdfStamp/<page_indices>",
+         pdfStamp.pdfStamp,
+         name="pdfStamp"),
+    path("uploadfile/pdfWatermark", pdfStamp.pdfWatermark,
+         name="pdfWatermark"),
     path("pdfInfo/getPdfMetaInfo",
-         pdInfo.getPdfMetaInfo,
+         pdfInfo.getPdfMetaInfo,
          name="getPdfMetaInfo"),
     path("pdfInfo/getPdfExtractText",
-         pdInfo.getPdfExtractText,
+         pdfInfo.getPdfExtractText,
          name="getPdfExtractText"),
-    path("pdfInfo/pdfEncrypt/<password>", pdInfo.pdfEncrypt,
+    path("pdfInfo/pdfEncrypt/<password>",
+         pdfInfo.pdfEncrypt,
          name="pdfEncrypt"),
-    path("pdfInfo/pdfDecrypt/<password>", pdInfo.pdfDecrypt,
+    path("pdfInfo/pdfDecrypt/<password>",
+         pdfInfo.pdfDecrypt,
          name="pdfDecrypt"),
     path("downloadFile/pdftoword/<file_path>",
          pdfToWord.download_file,

@@ -19,6 +19,12 @@ DOWNLOAD_FILE_SVG_PATH = BASE_DIR + '\\downloadfile\\pdfToSvg\\' + now
 
 DOWNLOAD_FILE_DSC_PATH = BASE_DIR + '\\downloadfile\\pdfDec\\' + now
 
+UPLOAD_FILE_MEG_PATH = BASE_DIR + '\\uploadfile\\pdfMerger\\' + now
+DOWNLOAD_FILE_MEG_PATH = BASE_DIR + '\\downloadfile\\pdfMerger\\' + now
+
+UPLOAD_FILE_STAMP_PATH = BASE_DIR + '\\uploadfile\\pdfStamp\\' + now
+DOWNLOAD_FILE_STAMP_PATH = BASE_DIR + '\\downloadfile\\pdfStamp\\' + now
+
 
 def isFIleExists(file_path):
     if not os.path.exists(file_path):
